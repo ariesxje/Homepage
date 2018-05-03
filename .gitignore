@@ -1,0 +1,55 @@
+# Created by .ignore support plugin (hsz.mobi)
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
+
+*.iml
+
+## Directory-based project format:
+.idea/
+
+## File-based project format:
+*.ipr
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+
+# NodeJS modules folder
+node_modules
+
+# npm debug log
+npm-debug.log
+
+# vs code
+.vscode
+
+# coverage
+
+/coverage
+
+www
+/dist
+*.tar.gz
+*.zip
+.DS_Store
+
+# configuration
+configuration.js
+
+e2e/features/reports/test_results.json
+e2e/features/reports/test_results.json
+e2e/features/reports/test_report.html
+deployment-trigger
