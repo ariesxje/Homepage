@@ -30,4 +30,9 @@ h2, h3, h4 {
   font-size: 1em;
   cursor: pointer;
   outline: none;
+
+  &:disabled {
+    cursor: default;
+    filter: brightness(0.6);
+  }
 }

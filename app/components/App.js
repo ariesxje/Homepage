@@ -8,7 +8,7 @@ import Header from './organism/Header';
 import Footer from './organism/Footer';
 import PageSection from './organism/PageSection';
 import InviteForm from './organism/InviteForm';
-import { SUBMIT_REQUEST } from '../actions/actions';
+import { SUBMIT_REQUEST, RE_REQUEST } from '../actions/actions';
 
 const styles = {
   content1: {
@@ -35,6 +35,24 @@ const styles = {
 };
 
 class App extends React.Component {
+  getSection3 = () => {
+    return (
+      <div style={styles.content3} id="page3" ref={ ref => {this.inviteSection = ref}}>
+        <h3>{this.props.requested ? 'You have just started a day with a better way! Thank you.':
+        'Get invites as soon as we launch.'}</h3>
+        {
+          this.props.requested ?
+            <button className="button" onClick={this.props.reRequest}>Get another invite</button> :
+            <InviteForm
+              submitRequest={this.props.submitRequest}
+              requestInProgress={this.props.requesting}
+              requestFallback={this.props.errorMessage}
+            />
+        }
+      </div>
+    );
+  };
+
   render() {
     return ([
       <Header key="header" />,
@@ -52,27 +70,36 @@ class App extends React.Component {
         </div>
       </PageSection>,
       <PageSection key="page3" backgroundImageUrl={configuration.image2}>
-        <div style={styles.content3} id="page3" ref={ ref => {this.inviteSection = ref}}>
-          <h3>Get invites as soon as we launch</h3>
-          <InviteForm submitRequest={this.props.submitRequest} requestInProgress={this.props.isRequesting} />
-        </div>
+        {this.getSection3()}
       </PageSection>,
       <Footer />,
     ]);
   }
-};
+}
 
 App.propTypes = {
-  isRequesting: PropTypes.bool,
+  requesting: PropTypes.bool,
+  requested: PropTypes.bool,
+  errorMessage: PropTypes.string,
   submitRequest: PropTypes.func,
+  reRequest: PropTypes.func,
 };
 
 App.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
+  const {
+    requesting,
+    requested,
+    showErrorPopup,
+    errorMessage,
+  } = state.inviteReducer;
   return {
-    isRequesting: state.inviteReducer.requesting,
+    requesting,
+    requested,
+    showErrorPopup,
+    errorMessage,
   };
 };
 
@@ -80,6 +107,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     submitRequest: (formValues) => {
       dispatch(SUBMIT_REQUEST(formValues));
+    },
+    reRequest: () => {
+      dispatch(RE_REQUEST());
     },
   };
 };

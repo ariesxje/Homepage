@@ -4,7 +4,7 @@ import * as R from 'ramda';
 const defaultInviteState = {
   requested: false,
   requesting: false,
-  showErrorPopup: false,
+  errorMessage: null,
 };
 
 const inviteReducer = (state = defaultInviteState, action) => {
@@ -13,6 +13,7 @@ const inviteReducer = (state = defaultInviteState, action) => {
       return {
         ...state,
         requesting: true,
+        errorMessage: null,
       };
     case 'COMPLETE_REQUEST':
       return {
@@ -24,7 +25,7 @@ const inviteReducer = (state = defaultInviteState, action) => {
       return {
         ...state,
         requesting: false,
-        showErrorPopup: true,
+        errorMessage: action.errorMessage,
       };
     case 'RE_REQUEST':
       return {
