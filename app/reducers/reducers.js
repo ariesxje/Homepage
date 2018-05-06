@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as R from 'ramda';
 
-const defaultInviteState = {
+export const defaultInviteState = {
   requested: false,
   requesting: false,
   errorMessage: null,

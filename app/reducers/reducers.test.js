@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { reducers, DEFAULT_GLOBAL_STATE } from './reducers';
+import mockAxios from 'jest-mock-axios';
+import { reducers, defaultInviteState } from './reducers';
 import * as actions from '../actions/actions';
-import { MODES } from '../utils/utils';
 
 let store;
 
@@ -13,18 +13,31 @@ beforeEach(() => {
   );
 });
 
-describe('global reducer', () => {
-  it('should return the initial state', () => {
-    const { globalReducer } = store.getState();
-    expect(globalReducer).toEqual(DEFAULT_GLOBAL_STATE);
+describe('invite reducer', () => {
+  afterEach(() => {
+    mockAxios.reset();
   });
 
-  it('should switch mode', () => {
-    store.dispatch(actions.SWITCH_MODE(MODES.tournament));
-    const { globalReducer } = store.getState();
-    expect(globalReducer).toEqual({
-      ...DEFAULT_GLOBAL_STATE,
-      mode: MODES.tournament,
+  it('should return the initial state', () => {
+    const { inviteReducer } = store.getState();
+    expect(inviteReducer).toEqual(defaultInviteState);
+  });
+
+  it('should reset error message and set requesting when starting a request', () => {
+    store.dispatch(actions.SUBMIT_REQUEST({name: 'name', email: 'email'}));
+    const { inviteReducer } = store.getState();
+
+    expect(inviteReducer).toEqual({
+      ...defaultInviteState,
+      requesting: true,
+      errorMessage: null,
     });
+
+    mockAxios.mockResponse({status: 200});
+
+    expect(inviteReducer).toEqual({
+      ...defaultInviteState,
+      requested: true,
+    })
   });
 });
