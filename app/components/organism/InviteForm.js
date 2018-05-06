@@ -27,13 +27,13 @@ class InviteForm extends Component {
       <Form onSubmit={this.props.submitRequest}>
         {formApi => (
           <form onSubmit={formApi.submitForm} id="inviteForm" noValidate>
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="fullName">Full Name</label><br/>
             <Text field="name" id="fullName" validate={this.validateName} validateOnSubmit />
             <div>{formApi.getError('name')}</div>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email</label><br/>
             <Text field="email" id="email" type="email" validateOnSubmit validate={this.validateEmail} />
             <div>{formApi.getError('email')}</div>
-            <button type="submit" disabled={this.props.requestInProgress}>
+            <button type="submit" disabled={this.props.requestInProgress} className="button">
               {this.props.requestInProgress ? 'Sending request...' : 'Send me invite'}
             </button>
           </form>

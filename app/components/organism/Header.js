@@ -14,7 +14,8 @@ const styles = {
   },
   headerContentContainer: {
     width: '100%',
-    maxWidth: '1200px'
+    maxWidth: '1200px',
+    padding: '0 20px',
   }
 };
 

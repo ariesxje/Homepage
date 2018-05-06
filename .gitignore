@@ -46,9 +46,6 @@ www
 *.zip
 .DS_Store
 
-# configuration
-configuration.js
-
 e2e/features/reports/test_results.json
 e2e/features/reports/test_results.json
 e2e/features/reports/test_report.html

@@ -1,6 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 $color: #262828;
 
 body {
   color: $color;
   margin: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+h3 {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+h2, h3, h4 {
+  text-align: center;
+}
+
+.button {
+  border: 3px solid white;
+  padding: 10px 20px;
+  background: transparent;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none;
 }
